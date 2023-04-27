@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { ChakraProvider, Box, VStack, Grid, theme } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { List } from './components/List';
+import { Top } from './components/Top';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
@@ -10,7 +12,12 @@ function App() {
         <Grid minH="100vh" p={3}>
           <ColorModeSwitcher justifySelf="flex-end" />
           <VStack spacing={8}>
-            <List />
+            <BrowserRouter>
+              <Routes>
+                <Route path={'/'} element={<Top />} />
+                <Route path={'/list'} element={<List />} />
+              </Routes>
+            </BrowserRouter>
           </VStack>
         </Grid>
       </Box>
