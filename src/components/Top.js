@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Input,
   Box,
@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const Top = () => {
   const navigate = useNavigate();
+  const [dept, setDept] = useState('');
   return (
     <>
       <Container>
@@ -18,14 +19,19 @@ export const Top = () => {
           <HStack>
             <Box>DeptNumber</Box>
             <Box>
-              <Input></Input>
+              <Input
+                value={dept}
+                onChange={e => setDept(e.target.value)}
+              ></Input>
             </Box>
           </HStack>
         </VStack>
         <VStack>
           <HStack>
             <Box>
-              <Button onClick={() => navigate('/list')}>UserList</Button>
+              <Button onClick={() => navigate(`/list?dept=${dept}`)}>
+                UserList
+              </Button>
             </Box>
             <Box>
               <Button>FixedDept</Button>

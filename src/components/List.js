@@ -10,12 +10,19 @@ import {
   Tbody,
   Td,
 } from '@chakra-ui/react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export const List = () => {
   const [dept, setDept] = useState([]);
   const [user, setUser] = useState([]);
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   useEffect(() => {
-    fetch('http://localhost:3001/checkin-dept?deptNumber=9300')
+    fetch(
+      `http://localhost:3001/checkin-dept?deptNumber=${searchParams.get(
+        'dept'
+      )}`
+    )
       .then(res => res.json())
       .then(data => {
         setDept(data[0].member.split(','));
@@ -25,20 +32,12 @@ export const List = () => {
       .then(data => {
         setUser(data);
       });
-  }, []);
+  }, [searchParams]);
   return (
     <>
-      <Button
-        onClick={() => {
-          console.log(dept);
-          console.log(user);
-        }}
-      >
-        Debug
-      </Button>
       <TableContainer>
         <Table variant="simple">
-          <TableCaption>Imperial to metric conversion factors</TableCaption>
+          <TableCaption>User List</TableCaption>
           <Thead>
             <Tr>
               <Th>UserID</Th>
@@ -66,6 +65,7 @@ export const List = () => {
           </Tbody>
         </Table>
       </TableContainer>
+      <Button onClick={() => navigate('/')}>Go Back</Button>
     </>
   );
 };
