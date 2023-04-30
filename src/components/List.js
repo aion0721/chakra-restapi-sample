@@ -18,6 +18,7 @@ export const List = props => {
   const [user, setUser] = useState([]);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const today = new Date();
   useEffect(() => {
     fetch(
       `${props.config.apiBaseUrl}/checkin-dept?deptNumber=${searchParams.get(
@@ -28,11 +29,17 @@ export const List = props => {
       .then(data => {
         setDept(data[0].member.split(','));
       });
-    fetch(`${props.config.apiBaseUrl}/checkin?add_date=2023/04/27`)
+    fetch(
+      `${props.config.apiBaseUrl}/checkin?add_date=${today.getFullYear()}/${(
+        '0' +
+        (today.getMonth() + 1)
+      ).slice(-2)}/${('0' + today.getDate()).slice(-2)}`
+    )
       .then(res => res.json())
       .then(data => {
         setUser(data);
       });
+    console.log();
   }, [searchParams]);
   return (
     <>
