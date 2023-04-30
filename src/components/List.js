@@ -10,6 +10,8 @@ import {
   Tbody,
   Td,
   Heading,
+  Text,
+  Highlight,
 } from '@chakra-ui/react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
@@ -62,12 +64,20 @@ export const List = props => {
                 return (
                   <Tr key={i}>
                     <Td>{ele}</Td>
-                    <Td>{userLogin}</Td>
+                    <Td>
+                      <Highlight
+                        query="NG"
+                        styles={{ px: '2', py: '1', bg: 'red.100' }}
+                      >
+                        {userLogin}
+                      </Highlight>
+                    </Td>
                   </Tr>
                 );
               })
             ) : (
               <Tr>
+                <Td></Td>
                 <Td></Td>
               </Tr>
             )}
