@@ -51,10 +51,15 @@ const Dept = () => {
   };
   const handleRegister = () => {
     const postData = { deptNumber: deptParams, member: dept.toString() };
-    fetch(`http://localhost:3001/checkin-dept?deptNumber=${deptParams}`, {
-      method: 'POST',
-      body: JSON.stringify(postData),
-    })
+    fetch(
+      `http://localhost:3001/checkin-dept${
+        newFlag ? '' : `?deptNumber=${deptParams}`
+      }`,
+      {
+        method: 'POST',
+        body: JSON.stringify(postData),
+      }
+    )
       .then(res => console.log(res))
       .then(onOpen);
   };
@@ -67,7 +72,7 @@ const Dept = () => {
       >
         <AlertDialogOverlay>
           <AlertDialogContent>
-            <AlertDialogHeader fontsize="lg" fontWeight="bold">
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
               Update Dialog
             </AlertDialogHeader>
             <AlertDialogBody> Update status</AlertDialogBody>
