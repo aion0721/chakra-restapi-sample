@@ -13,6 +13,13 @@ import {
   Input,
   Heading,
   Text,
+  useDisclosure,
+  AlertDialog,
+  AlertDialogOverlay,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogBody,
+  AlertDialogFooter,
 } from '@chakra-ui/react';
 
 const Dept = () => {
@@ -21,6 +28,8 @@ const Dept = () => {
   const [dept, setDept] = useState([]);
   const [newFlag, setNewFlag] = useState(false);
   const deptParams = searchParams.get('dept');
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = React.useRef();
 
   useEffect(() => {
     fetch(`http://localhost:3001/checkin-dept?deptNumber=${deptParams}`)
@@ -45,10 +54,34 @@ const Dept = () => {
     fetch(`http://localhost:3001/checkin-dept?deptNumber=${deptParams}`, {
       method: 'POST',
       body: JSON.stringify(postData),
-    }).then(res => console.log(res));
+    })
+      .then(res => console.log(res))
+      .then(onOpen);
   };
   return (
     <>
+      <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontsize="lg" fontWeight="bold">
+              Update Dialog
+            </AlertDialogHeader>
+            <AlertDialogBody> Update status</AlertDialogBody>
+            <AlertDialogFooter>
+              <Button
+                colorScheme="blue"
+                onClick={() => navigate(`/?dept=${deptParams}`)}
+              >
+                OK
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
       <Heading as="h2">Dept Member Fixed</Heading>
       <Text>
         {newFlag ? 'New :' : 'Target :'}
@@ -99,7 +132,7 @@ const Dept = () => {
       <Button onClick={() => handleRegister()} colorScheme="blue">
         ! Register !
       </Button>
-      <Button onClick={() => handleRegister()}># Clear #</Button>
+      <Button onClick={onOpen}># Clear #</Button>
       <Button onClick={() => navigate(`/?dept=${deptParams}`)}>Go Back</Button>
     </>
   );
