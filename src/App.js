@@ -4,6 +4,7 @@ import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { List } from './components/List';
 import { Top } from './components/Top';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Dept from './components/Dept';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
               <Routes>
                 <Route path={'/'} element={<Top />} />
                 <Route path={'/list'} element={<List />} />
+                <Route path={'/dept'} element={<Dept />} />
               </Routes>
             </BrowserRouter>
           </VStack>

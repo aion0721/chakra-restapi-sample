@@ -34,7 +34,9 @@ export const Top = () => {
               </Button>
             </Box>
             <Box>
-              <Button>FixedDept</Button>
+              <Button onClick={() => navigate(`/dept?dept=${dept}`)}>
+                FixedDept
+              </Button>
             </Box>
           </HStack>
         </VStack>
