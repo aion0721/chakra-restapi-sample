@@ -9,6 +9,7 @@ import {
   Th,
   Tbody,
   Td,
+  Heading,
 } from '@chakra-ui/react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
@@ -35,6 +36,7 @@ export const List = () => {
   }, [searchParams]);
   return (
     <>
+      <Heading as="h2">List</Heading>
       <TableContainer>
         <Table variant="simple">
           <TableCaption>User List</TableCaption>

@@ -1,5 +1,12 @@
 import React from 'react';
-import { ChakraProvider, Box, VStack, Grid, theme } from '@chakra-ui/react';
+import {
+  ChakraProvider,
+  Box,
+  VStack,
+  Grid,
+  theme,
+  Heading,
+} from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { List } from './components/List';
 import { Top } from './components/Top';
@@ -13,6 +20,7 @@ function App() {
         <Grid minH="100vh" p={3}>
           <ColorModeSwitcher justifySelf="flex-end" />
           <VStack spacing={8}>
+            <Heading as="h1"> [ Checkin System ]</Heading>
             <BrowserRouter>
               <Routes>
                 <Route path={'/'} element={<Top />} />

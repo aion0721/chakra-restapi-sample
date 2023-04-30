@@ -6,6 +6,7 @@ import {
   Button,
   HStack,
   VStack,
+  Heading,
 } from '@chakra-ui/react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
@@ -16,6 +17,7 @@ export const Top = () => {
   return (
     <>
       <Container>
+        <Heading as="h2">Top</Heading>
         <VStack>
           <HStack>
             <Box>DeptNumber</Box>

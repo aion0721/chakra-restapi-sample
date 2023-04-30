@@ -49,7 +49,7 @@ const Dept = () => {
   };
   return (
     <>
-      <Heading>Dept Member Fixed</Heading>
+      <Heading as="h2">Dept Member Fixed</Heading>
       <Text>
         {newFlag ? 'New :' : 'Target :'}
         {deptParams}
