@@ -12,6 +12,7 @@ import { List } from './components/List';
 import { Top } from './components/Top';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dept from './components/Dept';
+import config from './config.json';
 
 function App() {
   return (
@@ -24,8 +25,8 @@ function App() {
             <BrowserRouter>
               <Routes>
                 <Route path={'/'} element={<Top />} />
-                <Route path={'/list'} element={<List />} />
-                <Route path={'/dept'} element={<Dept />} />
+                <Route path={'/list'} element={<List config={config} />} />
+                <Route path={'/dept'} element={<Dept config={config} />} />
               </Routes>
             </BrowserRouter>
           </VStack>

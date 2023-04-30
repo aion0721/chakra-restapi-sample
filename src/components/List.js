@@ -13,14 +13,14 @@ import {
 } from '@chakra-ui/react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-export const List = () => {
+export const List = props => {
   const [dept, setDept] = useState([]);
   const [user, setUser] = useState([]);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   useEffect(() => {
     fetch(
-      `http://localhost:3001/checkin-dept?deptNumber=${searchParams.get(
+      `${props.config.apiBaseUrl}/checkin-dept?deptNumber=${searchParams.get(
         'dept'
       )}`
     )
@@ -28,7 +28,7 @@ export const List = () => {
       .then(data => {
         setDept(data[0].member.split(','));
       });
-    fetch('http://localhost:3001/checkin?add_date=2023/04/27')
+    fetch(`${props.config.apiBaseUrl}/checkin?add_date=2023/04/27`)
       .then(res => res.json())
       .then(data => {
         setUser(data);

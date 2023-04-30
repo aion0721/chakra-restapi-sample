@@ -22,7 +22,7 @@ import {
   AlertDialogFooter,
 } from '@chakra-ui/react';
 
-const Dept = () => {
+const Dept = props => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [dept, setDept] = useState([]);
@@ -32,7 +32,7 @@ const Dept = () => {
   const cancelRef = React.useRef();
 
   useEffect(() => {
-    fetch(`http://localhost:3001/checkin-dept?deptNumber=${deptParams}`)
+    fetch(`${props.config.apiBaseUrl}/checkin-dept?deptNumber=${deptParams}`)
       .then(res => res.json())
       .then(data => {
         data.length === 0
@@ -52,7 +52,7 @@ const Dept = () => {
   const handleRegister = () => {
     const postData = { deptNumber: deptParams, member: dept.toString() };
     fetch(
-      `http://localhost:3001/checkin-dept${
+      `${props.config.apiBaseUrl}/checkin-dept${
         newFlag ? '' : `?deptNumber=${deptParams}`
       }`,
       {
