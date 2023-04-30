@@ -65,7 +65,11 @@ export const List = () => {
           </Tbody>
         </Table>
       </TableContainer>
-      <Button onClick={() => navigate('/')}>Go Back</Button>
+      <Button
+        onClick={() => navigate(`/?dept=${searchParams.get('dept') ?? ''}`)}
+      >
+        Go Back
+      </Button>
     </>
   );
 };

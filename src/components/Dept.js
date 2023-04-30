@@ -100,7 +100,7 @@ const Dept = () => {
         ! Register !
       </Button>
       <Button onClick={() => handleRegister()}># Clear #</Button>
-      <Button onClick={() => navigate('/')}>Go Back</Button>
+      <Button onClick={() => navigate(`/?dept=${deptParams}`)}>Go Back</Button>
     </>
   );
 };

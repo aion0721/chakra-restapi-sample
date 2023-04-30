@@ -7,11 +7,12 @@ import {
   HStack,
   VStack,
 } from '@chakra-ui/react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export const Top = () => {
   const navigate = useNavigate();
-  const [dept, setDept] = useState('');
+  const [searchParams] = useSearchParams();
+  const [dept, setDept] = useState(searchParams.get('dept') ?? '');
   return (
     <>
       <Container>
